@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- querySelectorAll gives NodeList
+    getElementByClassName gives HtmlCollections -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM learning</title>
+    <style>
+        /* *{
+            margin:0;
+            border:0;
+        } */
+        .bg-black{
+            height:100vh;
+            background-color: #212121;
+            color:white;
+        }
+    </style>
+</head>
+<body class="bg-black">
+     <div>
+        <h1 class="heading" id="title">
+            Dom learning 
+            <!-- this span will show the difference between innerText and textContent -->
+            <span style="display:none;">test text</span>
+        </h1>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <input type ="password">
+
+        <ul>
+            <li class="li-items">one</li>
+            <li class="li-items">two</li>
+            <li class="li-items">three</li>
+            <li class="li-items">four</li>
+            <li class="li-items">five</li>
+        </ul>
+     </div> 
+
+</body>
+<script> 
+    const myLis = document.querySelectorAll("li");
+    myLis.forEach((items)=>{
+     items.ATTRIBUTE_NODE.color="red";
+    })
+    const myLis1 = document.getElementsByClassName("li-items");
+    const convertedArr = Array.from(myLis1);
+    convertedArr.map((items)=>{
+     items.style.backgroundColor = "yellow";
+     const oldText=  items.innerText ;
+     items.innerText = `${oldText} updated`
+    })
+ 
+ 
+    </script>
+</html>
