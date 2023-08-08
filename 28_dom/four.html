@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom creating element function</title>
+</head>
+<body style="background-color: #212121;color:white">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    // console.log(document.querySelector('.language'));
+    const createElement = (langName) =>
+    {
+           const createdElement = document.createElement('li');
+           // this is not well optimised as when we use innerText we traverse the whole tree there it is rather preferred to create a text node 
+           createdElement.innerText = langName;
+
+           const parent = document.querySelector('.language');
+           parent.appendChild(createdElement);
+
+    }
+   const createElementOpti = (langName) =>{
+    const createdElement = document.createElement('li');
+    createdElement.appendChild(document.createTextNode(langName));
+    document.querySelector('.language').appendChild(createdElement);
+   }
+    createElement('python');
+    createElementOpti('cpp');
+
+    //EDIT
+   const secondLi = document.querySelector("li:nth-child(2)");
+//    secondLi.appendChild(document.createTextNode('changed'))   this will add to the previous node but wont replace it 
+  // secondLi.innerHTML = 'changed';  this can be used but isnt optimised
+     console.log(secondLi.childNodes[0].nodeValue);
+     console.log(secondLi.children);
+     const newNode = document.createTextNode('changed');
+     secondLi.replaceChild(newNode,secondLi.childNodes[0]);
+     console.log(secondLi.childNodes[0].nodeValue);
+     console.log(secondLi.children);
+//   secondLi.replaceChild
+
+   //REMOVE 
+    // secondLi.removeChild(newNode);  this will remove only the text node 
+    secondLi.remove();
+    const lastLi = document.querySelector('li:last-child');
+    lastLi.remove();
+    
+  
+
+
+</script>
+</html>   

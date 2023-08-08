@@ -22,7 +22,7 @@ const check = 50000000 ;
 
 
 console.log(Math.random());
-// always gives value 0 < Math.random() < 1 
+// always gives value 0 <= Math.random() < 1 
 console.log(Math.floor(Math.random()*10) + 1);
 
 const min = 10 ;
