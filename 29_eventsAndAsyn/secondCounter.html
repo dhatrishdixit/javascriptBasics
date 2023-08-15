@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Second counter</h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <p class="display"></p>
+</body>
+<script>
+    document.querySelector('#start').addEventListener('click',()=>{
+        let i = 0
+        const intervalId = setInterval(()=>{
+           i = i+1 ;
+           document.querySelector('.display').innerText = `${i}`;
+        },1000)
+        document.querySelector('#stop').addEventListener('click',()=>{
+            const arr = [];
+            clearInterval(intervalId);
+            arr.push(i);
+            sessionStorage.setItem('time',`${arr}`);
+        })
+
+        
+    },false)
+</script>
+</html>

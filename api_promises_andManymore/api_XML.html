@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="
+        background-color: #212121;
+        color: aliceblue;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap:10px;
+        ">
+    <!-- 0	UNSENT	Client has been created. open() not called yet.
+    1	OPENED	open() has been called.
+    2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+    3	LOADING	Downloading; responseText holds partial data.
+    4	DONE	The operation is complete. -->
+
+    <div>
+hello! want to know more about me -
+    </div>
+    <button id="click">
+        click here 
+    </button>
+    <div
+     style="
+     display: flex;
+     flex-direction: column;
+     border: 1px solid aliceblue;
+     padding: 1px;
+     "
+     class="text"  >
+      hi
+    </div>
+</body>
+<script>
+    document.querySelector('#click').addEventListener('click',getReq,false);
+    function getReq (){
+    const xhr = new XMLHttpRequest() ;
+    console.log(xhr.readyState);
+    xhr.addEventListener('readystatechange',(e)=>{
+        console.log(xhr.readyState);
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                const data = xhr.responseText;
+                console.log(typeof data);
+                const dataObj = JSON.parse(data);
+                console.log(dataObj);
+                document.getElementsByClassName('text')[0].innerHTML = `
+                     <h3>Github profile : ${dataObj.login}<h3>
+                     <p>followers: ${dataObj.followers}</p>
+                `
+            }
+            else{
+                console.log('error in req')
+            }
+        }
+    })
+    const requestURL = 'https://api.github.com/users/dhatrishdixit';
+    xhr.open("GET",requestURL,true);
+    xhr.send();
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASYNC JS</title>
+</head>
+<body>
+    <h1>heading</h1>
+    <button id="id">stop</button>
+</body>
+<script>
+    // isme lekin function ka reference passhoga agar direct call back nhi likh rhe toh 
+    // read once abt callback function
+    
+    const sayDhatrish = function(){
+        console.log('dhatrish');
+    }
+
+    const change = function(){
+        document.querySelector('h1').innerText = 'hi this is dhatrish';
+    }
+    const changeHead = setTimeout(change,2000);
+
+    document.querySelector('#id').addEventListener('click',()=>{
+        clearTimeout(changeHead);
+        console.log('button clicked')
+    },false);
+</script>
+</html>

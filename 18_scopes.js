@@ -4,16 +4,24 @@
 // this is global scope
 let a = 300 ;
 var c = 300 ;
+let a1 = 50;
 if(true){
 
-    // this is block scope 
+    // this is block scope
+    a1 = 30 ; 
     let a = 30;
     const b = 20 ;
-    c = 10 ;
+    // c = 10 ; this wrong example , cause even a1 will change whic is let and it is not any exception 
+
+    /// but this is diff 
+    var d = 50
     console.log("inner ",a);
 }
+ // yaha ye diff hai ki agar change ho rhi hai value kis scope ke andar to bahar bhi change hogi 
 
+console.log('a1',a1);
 console.log(a);
+console.log(d);
 //console.log(b);
 // var scope is different it is visible to outside also 
 console.log(c);
