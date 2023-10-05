@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>
+        Button clicked
+    </button>
+  
+</body>
+  <script>
+        class React{
+            constructor(){
+                this.library = 'React',
+                this.server = 'https://localhost:3000'
+
+                // requirement to create an instance of this class whenever button is clicked with a reference to button and execute following functions
+                // document.querySelector('button')
+                //         .addEventListener('click',()=>{
+                //             console.log(this);  <--- imp
+                //         })
+                // toh basically ye hai ki handleClick ko bind karna padta hai constructor function ke sath , aur juki ham function ke andar hi hai directly this se bhi kam chal jata hai 
+
+                document.querySelector('button')
+                        .addEventListener('click',this.handleClick.bind(this))
+            }
+            handleClick(){
+                console.log('button is clicked')
+                console.log(this.server)
+                console.log(this)
+            }
+        }
+
+        const app = new React();
+    </script>
+</html>

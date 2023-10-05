@@ -37,3 +37,5 @@ const user2 = new myFun('dhatrish2',false,1);
 
 console.log(user1);
 user1.greeting();
+
+console.log('_____________',typeof user2);
