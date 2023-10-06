@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #313131;">
+
+    <label for="colorSet">Color Button to be added:</label>
+    <input type="text" id="colorSet" name="colorSet">
+    <button class="add">add</button>
+    <br><br>
+    <div class="main"></div>
+    <!-- <button id="orange">orange</button>
+    <button id="yellow">yellow</button> -->
+</body>
+<script>
+    // we want function not its reference or a function in executed form 
+    const color = ['orange','red','yellow','black','grey','blue'];
+    const parent = document.querySelector('.main');
+    for (const iterator of color) {
+            //create button 
+            const btn = document.createElement('button');
+            btn.setAttribute('id',`${iterator}`)
+            //create text node 
+            const textNode = document.createTextNode(`${iterator}`);
+    
+
+             //append text node to our btn 
+            btn.appendChild(textNode);
+
+            //append btn to parent 
+            parent.appendChild(btn);
+
+            document.querySelector(`#${iterator}`).onclick = handleClick(`${iterator}`);
+    }
+    function handleClick(color){
+        return function (){
+            console.log(`button of ${color} is clicked`);
+            document.body.style.backgroundColor = `${color}` ;
+        }
+    }
+   
+
+    document.querySelector('.add').addEventListener('click',()=>{
+        const set = document.getElementById('colorSet').value;
+        if(set !== ''){
+            color.push(`${set}`);
+            parent.innerHTML = '';
+            for (const iterator of color) {
+            //create button 
+            const btn = document.createElement('button');
+            btn.setAttribute('id',`${iterator}`)
+            //create text node 
+            const textNode = document.createTextNode(`${iterator}`);
+    
+
+             //append text node to our btn 
+            btn.appendChild(textNode);
+
+            //append btn to parent 
+            parent.appendChild(btn);
+
+            document.querySelector(`#${iterator}`).onclick = handleClick(`${iterator}`);
+    }
+
+
+        }
+    })
+
+
+
+ 
+    
+
+
+
+</script>
+</html>
