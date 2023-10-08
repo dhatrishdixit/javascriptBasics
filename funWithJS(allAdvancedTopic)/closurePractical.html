@@ -11,7 +11,11 @@
     <input type="text" id="colorSet" name="colorSet">
     <button class="add">add</button>
     <br><br>
-    <div class="main"></div>
+    <div class="main"></div><br><br>
+    <label for="delete">Color Button to be deleted:</label>
+    <input type="text" id="delete" name="delete">
+    <button class="del">delete</button>
+   
     <!-- <button id="orange">orange</button>
     <button id="yellow">yellow</button> -->
 </body>
@@ -19,7 +23,8 @@
     // we want function not its reference or a function in executed form 
     const color = ['orange','red','yellow','black','grey','blue'];
     const parent = document.querySelector('.main');
-    for (const iterator of color) {
+    if(color.length !== 0){
+        for (const iterator of color) {
             //create button 
             const btn = document.createElement('button');
             btn.setAttribute('id',`${iterator}`)
@@ -35,13 +40,38 @@
 
             document.querySelector(`#${iterator}`).onclick = handleClick(`${iterator}`);
     }
+    }
     function handleClick(color){
         return function (){
             console.log(`button of ${color} is clicked`);
             document.body.style.backgroundColor = `${color}` ;
         }
     }
-   
+    
+    document.querySelector('.del').addEventListener('click',()=>{
+        const del = document.getElementById("delete").value;
+        color.forEach((col,index) => {
+             if(col === del){
+                color.splice(index,1);
+             }           
+        });
+        parent.innerHTML = '';
+            for (const iterator of color) {
+            //create button 
+            const btn = document.createElement('button');
+            btn.setAttribute('id',`${iterator}`)
+            //create text node 
+            const textNode = document.createTextNode(`${iterator}`);
+    
+
+             //append text node to our btn 
+            btn.appendChild(textNode);
+
+            //append btn to parent 
+            parent.appendChild(btn);
+
+            document.querySelector(`#${iterator}`).onclick = handleClick(`${iterator}`);}
+    })
 
     document.querySelector('.add').addEventListener('click',()=>{
         const set = document.getElementById('colorSet').value;
